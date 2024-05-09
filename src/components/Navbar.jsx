@@ -1,9 +1,11 @@
+import ThemeController from "./ThemeController";
 
 const Navbar = () => {
     return (
-        <div>
-            <h2>This is navbar</h2>
-        </div>
+        <>
+            <h2 className="text-black dark:text-5xl dark:text-red-500">This is navbar</h2>
+            <ThemeController></ThemeController>
+        </>
     );
 };
 

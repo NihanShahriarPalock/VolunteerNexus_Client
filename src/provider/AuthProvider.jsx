@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
@@ -10,7 +11,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase/Firebase.Config";
-
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("CurrentUser-->", currentUser);
+      console.log("CurrentUser : ", currentUser);
       setLoading(false);
     });
     return () => {
@@ -75,5 +75,7 @@ const AuthProvider = ({ children }) => {
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
-
+AuthProvider.propTypes = {
+  children: PropTypes.node,
+};
 export default AuthProvider;
