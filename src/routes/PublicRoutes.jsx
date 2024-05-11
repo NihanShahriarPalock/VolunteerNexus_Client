@@ -9,6 +9,7 @@ import Registration from "../pages/Registration";
 import NeedVolunteerDetails from "../pages/NeedVolunteerDetails";
 import NeedVolunteerPage from "../pages/NeedVolunteerPage";
 import AddVolunteerPage from "../pages/AddVolunteerPage";
+import ManageMyPost from "../pages/ManageMyPost";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "/addVolunteer",
         element: <AddVolunteerPage />,
+      },
+      {
+        path: "/manageMyPost",
+        element: <ManageMyPost />,
       },
       {
         path: "/NeedVolunteerPage",
