@@ -31,7 +31,8 @@ const BeAVolunteer = () => {
         const suggestion = e.target.suggestion.value;
         const requestEmail = e.target.requestEmail.value
         // const description = description
-       const postedEmail = email
+        const postedEmail = email
+        const titleOfPost = postTitle;
 
         const requestData = {
           requestId,
@@ -39,6 +40,7 @@ const BeAVolunteer = () => {
           suggestion,
           requestEmail,
           postedEmail,
+          titleOfPost,
         };
        
         try {

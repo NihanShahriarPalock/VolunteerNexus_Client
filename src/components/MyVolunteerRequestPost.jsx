@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 
 const MyVolunteerRequestPost = () => {
       const { user } = useContext(AuthContext);
-      const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
 
       useEffect(() => {
         getData();
@@ -17,7 +20,43 @@ const MyVolunteerRequestPost = () => {
           `${import.meta.env.VITE_URL}/reqFilteredPost/${user?.email}`
         );
         setPosts(data);
-      };
+  };
+  
+
+    const handleDelete = async (id) => {
+      try {
+        const confirmed = await confirmDelete();
+        if (confirmed) {
+          const { data } = await axios.delete(
+            `${import.meta.env.VITE_URL}/reqPost/${id}`
+          );
+          console.log(data);
+          toast.success("Delete Successful");
+          getData();
+          navigate("/manageMyPost");
+        }
+      } catch (err) {
+        console.log(err.message);
+        toast.error(err.message);
+      }
+    };
+
+    const confirmDelete = async () => {
+      return new Promise((resolve) => {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, Delete It!",
+        }).then((result) => {
+          resolve(result.isConfirmed);
+        });
+      });
+    };
+
     return (
       <div>
         <h2 className='text-center text-4xl py-5 font-bold '>
@@ -50,23 +89,23 @@ const MyVolunteerRequestPost = () => {
                             scope='col'
                             className='py-3.5 px-4 text-lg font-bold text-center text-gray-500 dark:text-gray-400  border-r-2 border-gray-600'>
                             <div className='gap-x-2'>
+                              <span>Requested Email</span>
+                            </div>
+                          </th>
+
+                          <th
+                            scope='col'
+                            className='px-4 py-3.5 text-lg font-bold text-center text-gray-500 dark:text-gray-400 border-r-2 border-gray-600'>
+                            <div className='gap-x-2'>
+                              <span>Suggestion</span>
+                            </div>
+                          </th>
+
+                          <th
+                            scope='col'
+                            className='px-4 py-3.5 text-lg font-bold text-center text-gray-500 dark:text-gray-400 border-r-2 border-gray-600'>
+                            <div className='gap-x-2'>
                               <span>Post Title</span>
-                            </div>
-                          </th>
-
-                          <th
-                            scope='col'
-                            className='px-4 py-3.5 text-lg font-bold text-center text-gray-500 dark:text-gray-400 border-r-2 border-gray-600'>
-                            <div className='gap-x-2'>
-                              <span>Category</span>
-                            </div>
-                          </th>
-
-                          <th
-                            scope='col'
-                            className='px-4 py-3.5 text-lg font-bold text-center text-gray-500 dark:text-gray-400 border-r-2 border-gray-600'>
-                            <div className='gap-x-2'>
-                              <span>Deadline</span>
                             </div>
                           </th>
 
@@ -83,16 +122,14 @@ const MyVolunteerRequestPost = () => {
                         {posts.map((post) => (
                           <tr key={post._id}>
                             <td className='px-4 py-3.5 text-sm text-center text-gray-500 dark:text-gray-300 whitespace-nowrap border-r-2 border-gray-500'>
-                              {post.postTitle}
+                              {post.requestEmail}
                             </td>
 
                             <td className='px-4 py-3.5 text-sm text-center text-gray-500 dark:text-gray-300 whitespace-nowrap border-r-2 border-gray-500'>
-                              {post.requestEmail}
+                              {post.suggestion}
                             </td>
                             <td className='px-4 py-3.5 text-sm text-center text-gray-500 dark:text-gray-300 whitespace-nowrap border-r-2 border-gray-500'>
-                              {new Date(post.deadLine).toLocaleDateString(
-                                "en-GB"
-                              )}
+                              {post.titleOfPost}
                             </td>
 
                             <td className=' px-4 py-3.5  text-sm whitespace-nowrap'>
@@ -102,7 +139,10 @@ const MyVolunteerRequestPost = () => {
                                     to={`/NeedVolunteerUpdate/${post._id}`}
                                     title='Update'
                                     className=' text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none '>
-                                    <button>Cancel</button>
+                                    <button
+                                      onClick={() => handleDelete(post._id)}>
+                                      Cancel
+                                    </button>
                                   </Link>
                                 </div>
                               </div>
