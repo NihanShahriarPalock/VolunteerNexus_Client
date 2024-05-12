@@ -14,7 +14,8 @@ const NeedVolunteerDetails = () => {
         </div>
         <div className='text-bold text-4xl '>
           <p>Post Title : {postTitle} </p>
-          <p>Thumbnail: { thumbnail}</p>
+          <p>Thumbnail: {thumbnail}</p>
+          <p>Deadline : { deadLine}</p>
 
           <p>category : {category}</p>
         </div>

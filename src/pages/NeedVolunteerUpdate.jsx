@@ -76,7 +76,7 @@ const NeedVolunteerUpdate = () => {
       <h2>Need Update</h2>
       {Object.keys(post).length > 0 && (
         <form onSubmit={handleFormSubmit}>
-          {/* <div className='mb-4'>
+          <div className='mb-4'>
           <label
             className='block text-gray-700 text-sm font-bold mb-2'
             htmlFor='name'>
@@ -89,7 +89,7 @@ const NeedVolunteerUpdate = () => {
             className='border-2 border-gray-300 rounded-md w-full px-3 py-2'
             disabled
           />
-        </div> */}
+        </div>
           <div className='mb-4'>
             <label
               className='block text-gray-700 text-sm font-bold mb-2'

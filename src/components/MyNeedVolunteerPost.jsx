@@ -14,7 +14,7 @@ const MyNeedVolunteerPost = () => {
 
   const getData = async () => {
     const { data } = await axios(
-      `${import.meta.env.VITE_URL}/myPosts/${user?.email}`
+      `${import.meta.env.VITE_URL}/myPosts/${user?.email}`,{withCredentials:true}
     );
     setPosts(data);
   };

@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -39,7 +40,13 @@ const Registration = () => {
       const result = await createUser(email, password);
       console.log(result);
       await updateUserProfile(name, imageURL);
-      setUser({ ...user, photoURL: imageURL, displayName: name });
+      setUser({ ...result?.user, photoURL: imageURL, displayName: name });
+         const { data } = await axios.post(
+           `${import.meta.env.VITE_URL}/jwt`,
+           { email: result?.user?.email },
+           { withCredentials: true }
+      );
+      console.log(data);
       // setLoading(false);
          navigate(location?.state ? location.state : "/", { replace: true });
       toast.success("Registration successful");

@@ -3,22 +3,28 @@ import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const Login = () => {
-  const { signIn, signInWithGoogle,user,loading } = useContext(AuthContext);
+  const { signIn, signInWithGoogle, user, loading } = useContext(AuthContext);
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
   useEffect(() => {
     if (user) {
-    navigate('/')
-  }
-},[navigate,user])
+      navigate("/");
+    }
+  }, [navigate, user]);
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle();
-      //  console.log(result);
+      const result = await signInWithGoogle();
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_URL}/jwt`,
+        { email: result?.user?.email },
+        { withCredentials: true }
+      );
+      console.log(data);
       //  setLoading(false);
-      navigate(location?.state ? location.state : "/",{replace:true});
+      navigate(location?.state ? location.state : "/", { replace: true });
       toast.success("Login successful");
     } catch (err) {
       //  setLoading(false)
@@ -27,7 +33,7 @@ const Login = () => {
   };
 
   // Sign In With Email and Password
-  const handleLogin = async e => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form?.email.value;
@@ -37,8 +43,13 @@ const Login = () => {
     try {
       // setLoading(false);
       const result = await signIn(email, password);
-      console.log(result);
-         navigate(location?.state ? location.state : "/", { replace: true });
+         const { data } = await axios.post(
+           `${import.meta.env.VITE_URL}/jwt`,
+           { email: result?.user?.email },
+           { withCredentials: true }
+      );
+      console.log(data);
+      navigate(location?.state ? location.state : "/", { replace: true });
       toast.success("Login successful");
     } catch (err) {
       console.log(err);
@@ -46,7 +57,7 @@ const Login = () => {
       toast.error(err.message);
     }
   };
-  if (user || loading) return
+  if (user || loading) return;
   return (
     <>
       <Helmet>
@@ -56,9 +67,7 @@ const Login = () => {
         <div className='w-full  flex'>
           <div className='w-full lg:w-1/2 mx-auto bg-white dark:bg-gray-700  p-3 rounded-lg lg:rounded-l-none border border-red-200'>
             <div className=' p-5 '>
-              <form
-                onSubmit={handleLogin}
-                className='space-y-3 w-full '>
+              <form onSubmit={handleLogin} className='space-y-3 w-full '>
                 <div className='flex justify-between mb-5'>
                   <div className='size-40 flex justify-center items-center'>
                     <img
