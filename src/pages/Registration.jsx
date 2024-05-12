@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
 
 const Registration = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, setUser, createUser, updateUserProfile } =
     useContext(AuthContext);
   const handleSignUp = async (e) => {
@@ -40,7 +41,7 @@ const Registration = () => {
       await updateUserProfile(name, imageURL);
       setUser({ ...user, photoURL: imageURL, displayName: name });
       // setLoading(false);
-      navigate(location?.state ? location.state : "/");
+         navigate(location?.state ? location.state : "/", { replace: true });
       toast.success("Registration successful");
     } catch (err) {
       // setLoading(false);

@@ -25,7 +25,9 @@ const VolunteerNeedSection = () => {
      }, []);
     return (
       <>
-        <h2 className="text-center font-semibold text-2xl md:text-3xl lg:text-4xl">Volunteer Needs</h2>
+        <h2 className='text-center font-semibold text-2xl md:text-3xl lg:text-4xl'>
+          Volunteer Needs
+        </h2>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 lg:grid-cols-3'>
           {limitedData.map((data, index) => (
             <section key={index} className='bg-white dark:bg-gray-900'>
@@ -41,7 +43,7 @@ const VolunteerNeedSection = () => {
                     <a
                       href='#'
                       className='font-semibold text-gray-800 hover:underline dark:text-white md:text-xl'>
-                      {data.post_title}
+                      {data.postTitle}
                     </a>
 
                     <p className='mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm'>
@@ -49,7 +51,7 @@ const VolunteerNeedSection = () => {
                     </p>
 
                     <p className='mt-3 text-sm text-blue-500'>
-                      {data.deadline}
+                      {new Date(data.deadLine).toLocaleDateString("en-GB")}
                     </p>
                     <Link to={`/NeedVolunteer/${data._id}`}>
                       <p className='text-blue-500 text-xl  font-bold  flex justify-center items-center w-full '>

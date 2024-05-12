@@ -11,6 +11,7 @@ import NeedVolunteerPage from "../pages/NeedVolunteerPage";
 import AddVolunteerPage from "../pages/AddVolunteerPage";
 import ManageMyPost from "../pages/ManageMyPost";
 import NeedVolunteerUpdate from "../pages/NeedVolunteerUpdate";
+import BeAVolunteer from "../pages/BeAVolunteer";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +57,12 @@ export const router = createBrowserRouter([
         element: <NeedVolunteerUpdate />,
         // loader: ({ params }) =>
         //   fetch(`${import.meta.env.VITE_URL}/NeedVolunteerUpdate/${params.id}`),
+      },
+      {
+        path: "/BeAVolunteer/:id",
+        element: <BeAVolunteer />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_URL}/mySinglePost/${params.id}`),
       },
     ],
   },
