@@ -33,9 +33,6 @@ const BeAVolunteer = () => {
         // const description = description
        const postedEmail = email
 
-
-       
-       
         const requestData = {
           requestId,
           status,
