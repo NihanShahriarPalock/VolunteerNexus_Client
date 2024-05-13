@@ -49,10 +49,11 @@ const BeAVolunteer = () => {
             requestData
           );
             console.log(data);
-            toast.success("Data Inserted")
+          toast.success("Volunteer Request Inserted")
+          navigate(`/NeedVolunteer/${id}`);
         } catch (err) {
-          console.log(err);
-          console.log("error", err.message);
+          toast.success(err.response.data);
+          e.target.reset()
         }
       
     }
