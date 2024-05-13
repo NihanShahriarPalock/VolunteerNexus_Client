@@ -10,6 +10,7 @@ const NeedVolunteerPage = () => {
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
   const [searchText, setSearchText] = useState("");
+  const [layoutType, setLayoutType] = useState("card"); // State to track layout type
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,10 +47,10 @@ const NeedVolunteerPage = () => {
   const numberOfPages = Math.ceil(count / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
 
-  //  handle pagination button
   const handlePaginationButton = (value) => {
     setCurrentPage(value);
   };
+
   const handleReset = () => {
     setFilter("");
     setSort("");
@@ -62,11 +63,20 @@ const NeedVolunteerPage = () => {
     setSearch(searchText);
   };
 
+  // Function to toggle layout type
+  const toggleCardLayout = () => {
+    setLayoutType("card");
+  };
+
+  const toggleTableLayout = () => {
+    setLayoutType("table");
+  };
+
   return (
     <div>
       <div>
         <form onSubmit={handleSearch}>
-          <div className='flex p-1 overflow-hidden border rounded-lg    focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
+          <div className='flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
             <input
               className='px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
               type='text'
@@ -84,39 +94,109 @@ const NeedVolunteerPage = () => {
         <button onClick={handleReset} className='btn'>
           Reset
         </button>
+        <button onClick={toggleCardLayout} className='btn'>
+          Card Layout
+        </button>
+        <button onClick={toggleTableLayout} className='btn'>
+          Table Layout
+        </button>
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 lg:grid-cols-3'>
+      <div
+        className={
+          layoutType === "card"
+            ? "grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 lg:grid-cols-3"
+            : ""
+        }>
         {postData.map((data, index) => (
-          <section key={index} className='bg-white dark:bg-gray-900'>
-            <div className='container px-6 py-10 mx-auto'>
-              <div>
-                <img
-                  className='relative z-10 object-cover w-full rounded-md h-96'
-                  src={data.thumbnail}
-                  alt=''
-                />
-
-                <div className='relative z-20 max-w-lg p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900'>
-                  <a
-                    href='#'
-                    className='font-semibold text-gray-800 hover:underline dark:text-white md:text-xl'>
-                    {data.postTitle}
-                  </a>
-
-                  <p className='mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm'>
-                    {data.category}
-                  </p>
-
-                  <p className='mt-3 text-sm text-blue-500'>
-                    {new Date(data.deadLine).toLocaleDateString("en-GB")}
-                  </p>
-                  <Link to={`/NeedVolunteer/${data._id}`}>
-                    <p className='text-blue-500 text-xl  font-bold  flex justify-center items-center w-full '>
-                      View Details
-                    </p>
-                  </Link>
+          <section
+            key={index}
+            className={
+              layoutType === "card"
+                ? "bg-white dark:bg-gray-900"
+                : "border border-gray-200"
+            }>
+            <div
+              className={
+                layoutType === "card" ? "container px-6 py-10 mx-auto" : "p-4"
+              }>
+              {layoutType === "card" && (
+                <>
+                  <div>
+                    <img
+                      className='relative z-10 object-cover w-full rounded-md h-96'
+                      src={data.thumbnail}
+                      alt=''
+                    />
+                    <div className='relative z-20 max-w-lg p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900'>
+                      <a
+                        href='#'
+                        className='font-semibold text-gray-800 hover:underline dark:text-white md:text-xl'>
+                        {data.postTitle}
+                      </a>
+                      <p className='mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm'>
+                        {data.category}
+                      </p>
+                      <p className='mt-3 text-sm text-blue-500'>
+                        {new Date(data.deadLine).toLocaleDateString("en-GB")}
+                      </p>
+                      <Link to={`/NeedVolunteer/${data._id}`}>
+                        <p className='text-blue-500 text-xl  font-bold  flex justify-center items-center w-full '>
+                          View Details
+                        </p>
+                      </Link>
+                    </div>
+                  </div>
+                </>
+              )}
+              {layoutType === "table" && (
+                <div className='flex flex-col'>
+                  <div className='border-b border-gray-200'>
+                    <div className='px-6 py-3 bg-gray-50'>
+                      <span className='text-xs font-semibold text-gray-500 uppercase'>
+                        Post Title
+                      </span>
+                    </div>
+                    <div className='px-6 py-4'>
+                      <span className='text-sm font-medium text-gray-900'>
+                        {data.postTitle}
+                      </span>
+                    </div>
+                  </div>
+                  <div className='border-b border-gray-200'>
+                    <div className='px-6 py-3 bg-gray-50'>
+                      <span className='text-xs font-semibold text-gray-500 uppercase'>
+                        Category
+                      </span>
+                    </div>
+                    <div className='px-6 py-4'>
+                      <span className='text-sm text-gray-900'>
+                        {data.category}
+                      </span>
+                    </div>
+                  </div>
+                  <div className='border-b border-gray-200'>
+                    <div className='px-6 py-3 bg-gray-50'>
+                      <span className='text-xs font-semibold text-gray-500 uppercase'>
+                        Deadline
+                      </span>
+                    </div>
+                    <div className='px-6 py-4'>
+                      <span className='text-sm text-blue-500'>
+                        {new Date(data.deadLine).toLocaleDateString("en-GB")}
+                      </span>
+                    </div>
+                  </div>
+                  <div className='border-b border-gray-200'>
+                    <div className='px-6 py-3 bg-gray-50'>
+                      <Link
+                        to={`/NeedVolunteer/${data._id}`}
+                        className='text-xs font-semibold text-blue-500 uppercase hover:underline'>
+                        View Details
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </section>
         ))}
@@ -150,7 +230,7 @@ const NeedVolunteerPage = () => {
           <button
             onClick={() => handlePaginationButton(btnNum)}
             key={btnNum}
-            className={`${
+            className={`hidden ${
               currentPage === btnNum ? "bg-blue-500 text-white" : ""
             } px-4 py-2 mx-1 transition-colors duration-300 transform  rounded-md sm:inline hover:bg-blue-500  hover:text-white`}>
             {btnNum}
@@ -180,7 +260,6 @@ const NeedVolunteerPage = () => {
           </div>
         </button>
       </div>
-      
     </div>
   );
 };
