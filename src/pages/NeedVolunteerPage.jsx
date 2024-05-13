@@ -47,7 +47,7 @@ const NeedVolunteerPage = () => {
                     </p>
 
                     <p className='mt-3 text-sm text-blue-500'>
-                      {data.deadline}
+                      {new Date(data.deadLine).toLocaleDateString("en-GB")}
                     </p>
                     <Link to={`/NeedVolunteer/${data._id}`}>
                       <p className='text-blue-500 text-xl  font-bold  flex justify-center items-center w-full '>
@@ -60,7 +60,6 @@ const NeedVolunteerPage = () => {
             </section>
           ))}
         </div>
-      
       </div>
     );
 };

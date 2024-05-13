@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { useContext,   } from "react";
+import { useLoaderData,  useNavigate,  useParams } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -11,7 +11,7 @@ const BeAVolunteer = () => {
   const { user } = useContext(AuthContext);
 //   const [post, setPost] = useState({});
     const post = useLoaderData();
-  const [startDate, setStartDate] = useState();
+  // const [startDate, setStartDate] = useState();
 
     const {
         _id,
@@ -32,7 +32,8 @@ const BeAVolunteer = () => {
         const requestEmail = e.target.requestEmail.value
         // const description = description
         const postedEmail = email
-        const titleOfPost = postTitle;
+      const titleOfPost = postTitle;
+      const x = parseInt(volunteersNeeded)-1;
 
         const requestData = {
           requestId,
@@ -41,18 +42,27 @@ const BeAVolunteer = () => {
           requestEmail,
           postedEmail,
           titleOfPost,
-        };
-       
+          // volunteersNeeded,
+          x
+      };
+      console.log(typeof volunteersNeeded);
+       const y = {x}
         try {
           const { data } = await axios.post(
             `${import.meta.env.VITE_URL}/reqVolunteerPost`,
             requestData
           );
+          
             console.log(data);
           toast.success("Volunteer Request Inserted")
+          
+          const { data2 } = await axios.put(
+            `${import.meta.env.VITE_URL}/reqUpdateAvailable/${requestId}`,y
+          );
+          console.log(data2);
           navigate(`/NeedVolunteer/${id}`);
         } catch (err) {
-          toast.success(err.response.data);
+          toast.error(err.response.data);
           e.target.reset()
         }
       
@@ -62,21 +72,24 @@ const BeAVolunteer = () => {
     <div>
       <div>
         <h2>Be a Volunteer Form </h2>
-        <p> Posted By : {email}</p>
-        <p> Post Title : {postTitle}</p>
-        <p> Category : {category}</p>
         <p>Thumbnail : {thumbnail}</p>
+        <p> Post Title : {postTitle}</p>
+
+        <p> Category : {category}</p>
+        <p>Location : {location}</p>
+        <p>Num of volunteer Needed: {volunteersNeeded}</p>
+        <p>DeadLine {new Date(deadLine).toLocaleDateString("en-GB")}</p>
+        <p> Posted By : {email}</p>
       </div>
 
       <div>
         <form onSubmit={handleRequest}>
           <label>Email</label>
           <input
-                      
-                      name="requestEmail"
-                      type='text'
-                      defaultValue={user?.email}
-                      readOnly
+            name='requestEmail'
+            type='text'
+            defaultValue={user?.email}
+            readOnly
             className=' border-2 border-gray-500 input-bordered'
           />
           <div className='flex gap-5'>
@@ -95,7 +108,7 @@ const BeAVolunteer = () => {
             type='text'
             className=' border-2 border-gray-500 input-bordered'
           />
-          <button type='submit' className='btn'>
+          <button type='submit' className='btn my-5 btn-primary block'>
             Requested
           </button>
         </form>
