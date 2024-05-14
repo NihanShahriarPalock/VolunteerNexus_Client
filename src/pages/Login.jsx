@@ -61,18 +61,18 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>asd | Login</title>
+        <title>Nexus | Login</title>
       </Helmet>
       <div className='shadow-lg py-10 dark:bg-gray-700  '>
         <div className='w-full  flex'>
-          <div className='w-full lg:w-1/2 mx-auto bg-white dark:bg-gray-700  p-3 rounded-lg lg:rounded-l-none border border-red-200'>
+          <div className='w-full lg:w-1/2 mx-auto bg-white dark:bg-gray-700  p-3 rounded-lg lg:rounded-l-none border border-gray-300'>
             <div className=' p-5 '>
               <form onSubmit={handleLogin} className='space-y-3 w-full '>
                 <div className='flex justify-between mb-5'>
                   <div className='size-40 flex justify-center items-center'>
                     <img
                       className='w-full'
-                      src='https://i.ibb.co/z7HF4gZ/logo.png'
+                      src='https://i.ibb.co/s53nc4R/logo.png'
                       alt=''
                     />
                   </div>
@@ -115,7 +115,7 @@ const Login = () => {
                   </fieldset>
                 </div>
 
-                <button className='mt-6  hover:before:bg-red border-blue-500 relative h-[50px] w-full  border bg-white px-3 text-blue-500  transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:h-full before:w-0 before:bg-blue-500 before:transition-all before:duration-1000 hover:text-white  hover:before:left-0 hover:before:w-full'>
+                <button className='mt-6  border border-gray-800 dark:border-gray-200   w-full   bg-white px-3 py-4  before:bottom-0  text-gray-700 dark:text-gray-200 dark:bg-gray-700 rounded-md'>
                   <span className='z-50 relative'>Login</span>
                 </button>
               </form>
@@ -133,7 +133,7 @@ const Login = () => {
                   onClick={() => handleGoogleSignIn()}
                   aria-label='Login with Google'
                   type='button'
-                  className='flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 border-gray-600 focus:ring-default-600 dark:text-gray-200'>
+                  className='flex items-center justify-center w-full p-4 space-x-4  rounded-md focus:ring-2 focus:ring-offset-1 600 focus:ring-default-600 dark:text-gray-200 border border-gray-800 dark:border-gray-200 '>
                   <svg className='w-4' viewBox='0 0 533.5 544.3'>
                     <path
                       d='M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z'
@@ -152,7 +152,9 @@ const Login = () => {
                       fill='#ea4335'
                     />
                   </svg>
-                  <p>Login with Google</p>
+                  <p className='text-gray-600 dark:text-gray-200'>
+                    Login with Google
+                  </p>
                 </button>
               </div>
               <p className='text-sm text-center sm:px-6 text-gray-600 dark:text-gray-200'>

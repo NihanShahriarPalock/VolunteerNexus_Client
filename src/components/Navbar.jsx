@@ -38,7 +38,7 @@ const Navbar = () => {
          to='/'
          className={({ isActive }) =>
            isActive
-             ? "text-lg mr-4 hover:bg-red-400  text-gray-900 dark:text-gray-300 underline underline-offset-8  font-semibold h-full px-5 py-3 border border-yellow-600 "
+             ? "text-lg mr-4   text-gray-900 dark:text-gray-300 underline underline-offset-8  font-semibold h-full px-5 py-3 "
              : "text-gray-900 dark:text-gray-300 text-lg mr-4 hover:underline hover:underline-offset-8   rounded-lg font-normal px-5 py-3"
          }>
          <span>Home</span>
@@ -53,7 +53,7 @@ const Navbar = () => {
          }>
          <span>Need Volunteer</span>
        </NavLink>
-       <div className='relative px-5 py-3  hover:underline hover:underline-offset-8'>
+       {/* <div className='relative px-5 py-3  hover:underline hover:underline-offset-8'>
          <button
            type='button'
            className='text-lg  mr-4 text-gray-900 dark:text-gray-300 hover:underline  rounded-lg font-normal '
@@ -82,6 +82,35 @@ const Navbar = () => {
              </div>
            </div>
          )}
+        
+       </div> */}
+       <div className='dropdown'>
+         <div
+           tabIndex={0}
+           role='button'
+           className='text-gray-900 dark:text-gray-300 text-lg mr-4 hover:underline hover:underline-offset-8  dark:bg-gray-800   rounded-lg  px-5 py-3 '
+           onClick={() => setIsOpen(!isOpen)}>
+           My Profile
+         </div>
+         {isOpen && (
+           <ul
+             tabIndex={0}
+             className='dropdown-content z-50 menu mt-4 p-2 shadow  text-lg rounded-box w-48 bg-base-200 dark:bg-gray-800 text-gray-900 dark:text-gray-300 pl-4 lg:pl-0 ml-16'>
+             <NavLink
+               to='/addVolunteer'
+               className='hover:underline text-center underline-offset-4 mb-4'
+               role='menuitem'>
+               Add Volunteer Post
+             </NavLink>
+
+             <NavLink
+               to='/manageMyPost'
+               className=' hover:underline text-center  underline-offset-4 mb-4'
+               role='menuitem'>
+               Manage My Post
+             </NavLink>
+           </ul>
+         )}
        </div>
      </>
    );
@@ -90,33 +119,33 @@ const Navbar = () => {
  
   return (
     <div>
-      <div className='navbar bg-base-100 dark:bg-[#24292F]'>
+      <div className='navbar bg-base-200 dark:bg-gray-800 '>
         <div className='navbar-start'>
           <div className='dropdown' ref={dropdownRef}>
             <div
               onClick={toggleDropdown}
               tabIndex={0}
               role='button'
-              className='btn btn-ghost lg:hidden'>
+              className='btn btn-ghost lg:hidden text-gray-900 dark:text-gray-300 text-4xl'>
               {open ? <ImCross /> : <IoMenu />}
             </div>
             {open && (
-              <ul className='menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-52'>
+              <ul className='menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 dark:bg-gray-800 text-gray-900 dark:text-gray-300  rounded-box w-52'>
                 {allLink}
               </ul>
             )}
           </div>
-          <Link to='/' className='btn btn-ghost text-xl'>
-            daisyUI
+          <Link
+            to='/'
+            className='text-xl md:text-2xl lg:text-4xl text-gray-900 dark:text-gray-300 '>
+            VolunteerNexus
           </Link>
         </div>
 
         <div className='navbar-center hidden lg:flex'>
-          <ul className='menu menu-horizontal px-1 border border-red-600'>
-            {allLink}
-          </ul>
+          <ul className='menu menu-horizontal px-1 '>{allLink}</ul>
         </div>
-        <div className='navbar-end'>
+        <div className='navbar-end flex gap-4'>
           <ThemeController></ThemeController>
           {user && (
             <div className='dropdown dropdown-end'>
@@ -155,18 +184,22 @@ const Navbar = () => {
                 </div>
               </div>
               {imageMenu && (
-                <ul className='mt-3 z-50 p-2 shadow menu menu-sm dropdown-content bg-transparent '>
-                  <li>
-                    <button className='text-red-600' onClick={logOut}>
-                      Logout
-                    </button>
-                  </li>
+                <ul className='mt-4 z-50 p-2 shadow menu menu-sm dropdown-content bg-base-100 dark:bg-[#24292F] '>
+                  <button
+                    className='text-red-600 text-xl font-normal '
+                    onClick={logOut}>
+                    Logout
+                  </button>
                 </ul>
               )}
               <span></span>
             </div>
           )}
-          {!user && <Link to='/login'>Login</Link>}
+          {!user && (
+            <Link to='/login'>
+              <span className=' text-gray-900 dark:text-gray-300 text-lg hover:underline underline-offset-8'>Login</span>
+            </Link>
+          )}
         </div>
       </div>
     </div>

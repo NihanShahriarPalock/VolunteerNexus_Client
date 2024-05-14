@@ -45,27 +45,40 @@ const Slider = () => {
               /> */}
             </p>
           </div>
-          <SwiperSlide>
-            <div>
-              <div className="relative  h-screen bg-center opacity-80  bg-no-repeat bg-cover bg-[url('https://i.ibb.co/kGMQrNG/slider55.png')]"></div>
-            </div>
-          </SwiperSlide>
 
           <SwiperSlide>
-            <div>
-                          <div className="relative  h-screen bg-center opacity-80  bg-no-repeat bg-cover bg-[url('https://i.ibb.co/GTnNK3W/slider-2.jpg')]">
-                              <p>Heelo</p>
+            <div className='h-screen'>
+              <div className="bg-cover border border-red- w-full h-full bg-[url('https://i.ibb.co/12WyKj7/slider-1.png')] bg-right">
+                <p>kkkkkkk</p>
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              <div className="relative  h-screen bg-center opacity-80  bg-no-repeat bg-cover bg-[url('https://i.ibb.co/8cp6cSF/slider-3.jpg')]"></div>
-            </div>
-          </SwiperSlide>
+          {/* slide 2  */}
           {/* <SwiperSlide>
-            <div>
-              <div className="relative  h-screen bg-center opacity-80  bg-no-repeat bg-cover bg-[url('https://i.ibb.co/mh4zJVQ/slider-4.jpg')]"></div>
+            <div className="relative h-screen bg-center bg-no-repeat bg-cover backdrop-blur-lg  bg-[url('https://i.ibb.co/styH9Cs/ff.jpg')]">
+              <div className='absolute inset-0 bg-black opacity-50'></div>
+              <div className='absolute inset-0 flex justify-center items-center'>
+                <div className='text-center'>
+                  <p className='text-6xl text-white '>
+                    Make a Difference in Society <br /> Volunteer with Passion &
+                    Purpose!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide> */}
+          {/* slide 3  */}
+          {/* <SwiperSlide>
+            <div className="relative h-screen bg-center bg-no-repeat bg-cover backdrop-blur-lg  bg-[url('https://i.ibb.co/KDvXTfj/vv-3.jpg')]">
+              <div className='absolute inset-0 bg-black opacity-50'></div>
+              <div className='absolute inset-0 flex justify-center items-center'>
+                <div className='text-center'>
+                  <p className='text-6xl text-white '>
+                    Start your journey with us <br /> and be part of something
+                    meaningful
+                  </p>
+                </div>
+              </div>
             </div>
           </SwiperSlide> */}
         </Swiper>

@@ -8,8 +8,7 @@ import axios from "axios";
 const Registration = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, setUser, createUser, updateUserProfile } =
-    useContext(AuthContext);
+  const { setUser, createUser, updateUserProfile } = useContext(AuthContext);
   const handleSignUp = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -19,18 +18,18 @@ const Registration = () => {
     const password = form?.password.value;
 
     if (password.length < 6) {
-      toast.error("password must be have at least 6 characters");
+      toast.error("Password need at least 6 characters");
       form.reset();
       return;
     }
     if (!/[A-Z]/.test(password)) {
-      toast.error("password must be have at least a capital  letter");
+      toast.error("Password must be have at least a capital  letter");
       form.reset();
       return false;
     }
 
     if (!/[a-z]/.test(password)) {
-      toast.error("password must be have at least a small  letter");
+      toast.error("Password must be have at least a small  letter");
       form.reset();
       return false;
     }
@@ -41,14 +40,14 @@ const Registration = () => {
       console.log(result);
       await updateUserProfile(name, imageURL);
       setUser({ ...result?.user, photoURL: imageURL, displayName: name });
-         const { data } = await axios.post(
-           `${import.meta.env.VITE_URL}/jwt`,
-           { email: result?.user?.email },
-           { withCredentials: true }
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_URL}/jwt`,
+        { email: result?.user?.email },
+        { withCredentials: true }
       );
       console.log(data);
       // setLoading(false);
-         navigate(location?.state ? location.state : "/", { replace: true });
+      navigate(location?.state ? location.state : "/", { replace: true });
       toast.success("Registration successful");
     } catch (err) {
       // setLoading(false);
@@ -58,17 +57,17 @@ const Registration = () => {
   return (
     <>
       <Helmet>
-        <title>asd | Registration</title>
+        <title>Nexus | Registration</title>
       </Helmet>
-      <div>
-        <h1 className='mt-10 backdrop-blur-sm text-4xl text-center pb-5'>
+      <div className='dark:bg-gray-700 bg-white py-10'>
+        <h1 className=' backdrop-blur-sm text-4xl text-center pb-5'>
           Registration Form
         </h1>
         <p className='pb-2 text-center text-gray-400'>
           Fill up all the information to register
         </p>
         <div className=' shadow-lg  w-full  flex'>
-          <div className='w-full lg:w-1/2 mx-auto bg-white p-5 rounded-lg lg:rounded-l-none'>
+          <div className='w-full lg:w-1/2 mx-auto  p-5 rounded-lg lg:rounded-l-none'>
             <form
               onSubmit={handleSignUp}
               className='space-y-3 w-full shadow-lg  p-5'>
@@ -129,7 +128,7 @@ const Registration = () => {
                 </fieldset>
               </div>
 
-              <button className='mt-6  hover:before:bg-red border-blue-500 relative h-[50px] w-full  border bg-white px-3 text-blue-500  transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:h-full before:w-0 before:bg-blue-500 before:transition-all before:duration-1000 hover:text-white  hover:before:left-0 hover:before:w-full'>
+              <button className='mt-6  border border-gray-800 dark:border-gray-200   w-full   bg-white px-3 py-4  before:bottom-0  text-gray-700 dark:text-gray-200 dark:bg-gray-700 rounded-md'>
                 <span className='z-50 relative'>Register</span>
               </button>
             </form>

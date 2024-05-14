@@ -37,6 +37,7 @@ const AddVolunteerPage = () => {
       const { data } = await axios.post(
         `${import.meta.env.VITE_URL}/addVolunteerPost`,
         info
+        
       );
       console.log(data);
       toast.success("Data Added Successfully");

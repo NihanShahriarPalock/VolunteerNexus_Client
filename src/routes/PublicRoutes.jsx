@@ -12,6 +12,7 @@ import AddVolunteerPage from "../pages/AddVolunteerPage";
 import ManageMyPost from "../pages/ManageMyPost";
 import NeedVolunteerUpdate from "../pages/NeedVolunteerUpdate";
 import BeAVolunteer from "../pages/BeAVolunteer";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -34,11 +35,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/addVolunteer",
-        element: <AddVolunteerPage />,
+        element: (
+          <PrivateRoute>
+            <AddVolunteerPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/manageMyPost",
-        element: <ManageMyPost />,
+        element: (
+          <PrivateRoute>
+            <ManageMyPost />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/NeedVolunteerPage",
@@ -47,20 +56,32 @@ export const router = createBrowserRouter([
 
       {
         path: "/NeedVolunteer/:id",
-        element: <NeedVolunteerDetails />,
+        element: (
+          <PrivateRoute>
+            <NeedVolunteerDetails />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_URL}/NeedVolunteer/${params.id}`),
       },
 
       {
         path: "/NeedVolunteerUpdate/:id",
-        element: <NeedVolunteerUpdate />,
+        element: (
+          <PrivateRoute>
+            <NeedVolunteerUpdate />
+          </PrivateRoute>
+        ),
         // loader: ({ params }) =>
         //   fetch(`${import.meta.env.VITE_URL}/NeedVolunteerUpdate/${params.id}`),
       },
       {
         path: "/BeAVolunteer/:id",
-        element: <BeAVolunteer />,
+        element: (
+          <PrivateRoute>
+            <BeAVolunteer />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_URL}/mySinglePost/${params.id}`),
       },
