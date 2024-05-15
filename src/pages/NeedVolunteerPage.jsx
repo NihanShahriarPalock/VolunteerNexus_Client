@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { TbGridDots } from "react-icons/tb";
 import { HiOutlineBars4 } from "react-icons/hi2";
+import { Helmet } from "react-helmet-async";
 const NeedVolunteerPage = () => {
   const [postData, setPostData] = useState([]);
   const [itemsPerPage] = useState(6);
@@ -74,6 +75,7 @@ const NeedVolunteerPage = () => {
 
   return (
     <div>
+      <Helmet><title>Nexus | Need Volunteer</title></Helmet>
       <div className='bg-base-100 dark:bg-[#24292F] py-10 '>
         <div className='flex justify-between items-center flex-col-reverse md:flex-row'>
           <div className='hidden md:block'></div>

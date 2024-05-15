@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 const Login = () => {
-  const { signIn, signInWithGoogle, user, loading } = useContext(AuthContext);
+  const { signIn, signInWithGoogle, user, loading,setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
@@ -23,7 +23,7 @@ const Login = () => {
         { withCredentials: true }
       );
       console.log(data);
-      //  setLoading(false);
+       setLoading(false);
       navigate(location?.state ? location.state : "/", { replace: true });
       toast.success("Login successful");
     } catch (err) {
@@ -41,7 +41,7 @@ const Login = () => {
 
     // signIn(email, password);
     try {
-      // setLoading(false);
+      
       const result = await signIn(email, password);
          const { data } = await axios.post(
            `${import.meta.env.VITE_URL}/jwt`,
@@ -49,11 +49,12 @@ const Login = () => {
            { withCredentials: true }
       );
       console.log(data);
+      setLoading(false);
       navigate(location?.state ? location.state : "/", { replace: true });
       toast.success("Login successful");
     } catch (err) {
       console.log(err);
-      // setLoading(false);
+      setLoading(false);
       toast.error(err.message);
     }
   };

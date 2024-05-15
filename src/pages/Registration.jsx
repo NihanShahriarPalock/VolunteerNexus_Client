@@ -8,7 +8,7 @@ import axios from "axios";
 const Registration = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { setUser, createUser, updateUserProfile } = useContext(AuthContext);
+  const { setUser, createUser, updateUserProfile ,setLoading} = useContext(AuthContext);
   const handleSignUp = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -46,11 +46,11 @@ const Registration = () => {
         { withCredentials: true }
       );
       console.log(data);
-      // setLoading(false);
+      setLoading(false);
       navigate(location?.state ? location.state : "/", { replace: true });
       toast.success("Registration successful");
     } catch (err) {
-      // setLoading(false);
+      setLoading(false);
       toast.error(err.message);
     }
   };
@@ -60,10 +60,10 @@ const Registration = () => {
         <title>Nexus | Registration</title>
       </Helmet>
       <div className='dark:bg-gray-700 bg-white py-10'>
-        <h1 className=' backdrop-blur-sm text-4xl text-center pb-5'>
+        <h1 className=' backdrop-blur-sm text-4xl text-center pb-5 text-gray-900 dark:text-gray-300'>
           Registration Form
         </h1>
-        <p className='pb-2 text-center text-gray-400'>
+        <p className='pb-2 text-center text-gray-900 dark:text-gray-300'>
           Fill up all the information to register
         </p>
         <div className=' shadow-lg  w-full  flex'>
@@ -73,34 +73,38 @@ const Registration = () => {
               className='space-y-3 w-full shadow-lg  p-5'>
               <div>
                 <fieldset className='border border-solid border-gray-300 p-3 w-full rounded'>
-                  <legend className=' font-medium text-black/60'>Name</legend>
+                  <legend className=' font-medium text-gray-900 dark:text-gray-300'>
+                    Name
+                  </legend>
                   <input
                     type='text'
                     name='name'
-                    autoComplete='email'
+                    autoComplete='displayName'
                     id=''
                     placeholder='Enter Your Name'
-                    className='px-4 py-1 w-full focus:outline-0'
+                    className='px-4 py-1 w-full focus:outline-0 dark:bg-gray-700 bg-white text-gray-900 dark:text-gray-300 '
                   />
                 </fieldset>
               </div>
 
               <div>
                 <fieldset className='border border-solid border-gray-300 p-3 w-full rounded'>
-                  <legend className=' font-medium text-black/60'>Email</legend>
+                  <legend className=' font-medium text-gray-900 dark:text-gray-300'>
+                    Email
+                  </legend>
                   <input
                     type='email'
                     name='email'
                     id=''
                     placeholder='Enter Your Email'
-                    className='px-4 py-1 w-full focus:outline-0'
+                    className='px-4 py-1 w-full focus:outline-0 dark:bg-gray-700 bg-white text-gray-900 dark:text-gray-300'
                     required
                   />
                 </fieldset>
               </div>
               <div>
                 <fieldset className='border border-solid border-gray-300 p-3 w-full rounded'>
-                  <legend className=' font-medium text-black/60'>
+                  <legend className=' font-medium text-gray-900 dark:text-gray-300'>
                     Image URL
                   </legend>
                   <input
@@ -108,13 +112,13 @@ const Registration = () => {
                     name='imageURL'
                     id=''
                     placeholder='Enter Your Image URL'
-                    className='px-4 py-1 w-full focus:outline-0'
+                    className='px-4 py-1 w-full focus:outline-0 dark:bg-gray-700 bg-white text-gray-900 dark:text-gray-300'
                   />
                 </fieldset>
               </div>
               <div>
                 <fieldset className='border border-solid border-gray-300 p-3 w-full rounded'>
-                  <legend className=' font-medium text-black/60'>
+                  <legend className=' font-medium text-gray-900 dark:text-gray-300'>
                     Password
                   </legend>
                   <input
@@ -122,7 +126,7 @@ const Registration = () => {
                     name='password'
                     id=''
                     placeholder='Enter Password'
-                    className='px-4 py-1 w-full focus:outline-0'
+                    className='px-4 py-1 w-full focus:outline-0 dark:bg-gray-700 bg-white text-gray-900 dark:text-gray-300'
                     required
                   />
                 </fieldset>
@@ -132,10 +136,10 @@ const Registration = () => {
                 <span className='z-50 relative'>Register</span>
               </button>
             </form>
-            <div className='text-center my-3'>
+            <div className='text-center my-3 text-gray-900 dark:text-gray-300'>
               Already Registered ?
               <Link
-                className='text-blue-500 hover:underline underline-offset-4 ml-2'
+                className='text-blue-500 hover:underline underline-offset-4 ml-2  '
                 to='/login'>
                 Login
               </Link>

@@ -47,15 +47,7 @@ const Slider = () => {
           </div>
 
           <SwiperSlide>
-            <div className='h-screen'>
-              <div className="bg-cover border border-red- w-full h-full bg-[url('https://i.ibb.co/12WyKj7/slider-1.png')] bg-right">
-                <p>kkkkkkk</p>
-              </div>
-            </div>
-          </SwiperSlide>
-          {/* slide 2  */}
-          {/* <SwiperSlide>
-            <div className="relative h-screen bg-center bg-no-repeat bg-cover backdrop-blur-lg  bg-[url('https://i.ibb.co/styH9Cs/ff.jpg')]">
+            <div className="relative h-screen bg-center bg-no-repeat bg-cover backdrop-blur-lg  bg-[url('https://i.ibb.co/cN4MfSH/vv-1.jpg')]">
               <div className='absolute inset-0 bg-black opacity-50'></div>
               <div className='absolute inset-0 flex justify-center items-center'>
                 <div className='text-center'>
@@ -66,10 +58,25 @@ const Slider = () => {
                 </div>
               </div>
             </div>
-          </SwiperSlide> */}
-          {/* slide 3  */}
-          {/* <SwiperSlide>
+          </SwiperSlide>
+
+          {/* slide 2  */}
+          <SwiperSlide>
             <div className="relative h-screen bg-center bg-no-repeat bg-cover backdrop-blur-lg  bg-[url('https://i.ibb.co/KDvXTfj/vv-3.jpg')]">
+              <div className='absolute inset-0 bg-black opacity-50'></div>
+              <div className='absolute inset-0 flex justify-center items-center'>
+                <div className='text-center'>
+                  <p className='text-6xl text-white '>
+                    Make a Difference in Society <br /> Volunteer with Passion &
+                    Purpose!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          {/* slide 3  */}
+          <SwiperSlide>
+            <div className="relative h-screen bg-center bg-no-repeat bg-cover backdrop-blur-lg  bg-[url('https://i.ibb.co/styH9Cs/ff.jpg')]">
               <div className='absolute inset-0 bg-black opacity-50'></div>
               <div className='absolute inset-0 flex justify-center items-center'>
                 <div className='text-center'>
@@ -80,7 +87,7 @@ const Slider = () => {
                 </div>
               </div>
             </div>
-          </SwiperSlide> */}
+          </SwiperSlide>
         </Swiper>
       </div>
     </>

@@ -54,8 +54,8 @@ const MyNeedVolunteerPost = () => {
 
   return (
     <div className='overflow-hidden bg-base-100 dark:bg-[#24292F] '>
-      <div className='px-2 lg:px-24 mx-auto'>
-        <h2 className='text-center text-4xl py-4 text-gray-900 dark:text-gray-300'>
+      <div className='px-2 lg:px-24 mx-auto py-5'>
+        <h2 className='text-center text-4xl font-bold py-5 text-gray-900 dark:text-gray-300'>
           My Need Volunteer Post
         </h2>
         {posts.length === 0 ? (
