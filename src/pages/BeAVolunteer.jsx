@@ -76,11 +76,11 @@ console.log(data);
       <Helmet>
         <title>Nexus | Request Form</title>
       </Helmet>
-      <div className=' justify-center py-8 bg-slate-200 dark:bg-gray-700'>
+      <div className=' justify-center py-8 bg-slate-200 dark:bg-gray-700 text-gray-900 dark:text-gray-300'>
         <h2 className='text-2xl font-bold mb-4 text-center'>
           Volunteer Application Form
         </h2>
-        <div className='flex flex-col lg:flex-row w-full max-w-7xl mx-auto bg-white p-8 shadow-md rounded-md'>
+        <div className='flex flex-col lg:flex-row w-full max-w-7xl mx-auto p-8 shadow-md rounded-md'>
           <div className='w-full lg:w-1/2 pr-8 '>
             <img src={thumbnail} alt='' className='w-full h-full rounded-lg' />
           </div>
@@ -89,7 +89,7 @@ console.log(data);
               <form onSubmit={handleRequest}>
                 <div className='flex flex-col lg:flex-row gap-1 '>
                   <div className='mb-4 w-full'>
-                    <label className='block text-gray-700 text-sm font-bold mb-2'>
+                    <label className='block text-sm font-bold mb-2'>
                       Post Title
                     </label>
                     <input
@@ -115,7 +115,7 @@ console.log(data);
                 </div>
 
                 <div className='mb-4'>
-                  <label className='block text-gray-700 text-sm font-bold mb-2'>
+                  <label className='block  text-sm font-bold mb-2'>
                     Description
                   </label>
                   <textarea
@@ -130,7 +130,7 @@ console.log(data);
 
                 <div className='flex flex-col lg:flex-row gap-1'>
                   <div className='mb-4 w-full'>
-                    <label className='block text-gray-700 text-sm font-bold mb-2'>
+                    <label className='block  text-sm font-bold mb-2'>
                       Location
                     </label>
                     <input
@@ -143,7 +143,7 @@ console.log(data);
                   </div>
 
                   <div className='mb-4 w-full'>
-                    <label className='block text-gray-700 text-sm font-bold mb-2'>
+                    <label className='block  text-sm font-bold mb-2'>
                       Volunteers Needs
                     </label>
                     <input
@@ -155,7 +155,7 @@ console.log(data);
                     />
                   </div>
                   <div className='mb-4 w-full'>
-                    <label className='block text-gray-700 text-sm font-bold mb-2'>
+                    <label className='block  text-sm font-bold mb-2'>
                       Dead Line
                     </label>
                     <input
@@ -172,7 +172,7 @@ console.log(data);
 
                 <div className='flex flex-col lg:flex-row gap-1'>
                   <div className='mb-4 w-full '>
-                    <label className='block text-gray-700 text-sm font-bold mb-2'>
+                    <label className='block  text-sm font-bold mb-2'>
                       Organizer Name
                     </label>
                     <input
@@ -184,7 +184,7 @@ console.log(data);
                     />
                   </div>
                   <div className='mb-4 w-full'>
-                    <label className='block text-gray-700 text-sm font-bold mb-2'>
+                    <label className='block  text-sm font-bold mb-2'>
                       Organizer Email
                     </label>
                     <input
@@ -199,7 +199,7 @@ console.log(data);
 
                 <div className='flex flex-col lg:flex-row gap-1'>
                   <div className='mb-4 w-full'>
-                    <label className='block text-gray-700 text-sm font-bold mb-2'>
+                    <label className='block  text-sm font-bold mb-2'>
                       Applicant Email
                     </label>
                     <input
@@ -211,7 +211,7 @@ console.log(data);
                     />
                   </div>
                   <div className='mb-4 w-full'>
-                    <label className='block text-gray-700 text-sm font-bold mb-2'>
+                    <label className='block  text-sm font-bold mb-2'>
                       Applicant Name
                     </label>
                     <input
@@ -224,7 +224,7 @@ console.log(data);
                   </div>
                 </div>
                 <div className='mb-4'>
-                  <label className='block text-gray-700 text-sm font-bold mb-2'>
+                  <label className='block  text-sm font-bold mb-2'>
                     Status
                   </label>
                   <input
@@ -236,7 +236,7 @@ console.log(data);
                   />
                 </div>
                 <div className='mb-4'>
-                  <label className='block text-gray-700 text-sm font-bold mb-2'>
+                  <label className='block  text-sm font-bold mb-2'>
                     Suggestion
                   </label>
                   <input

@@ -45,13 +45,13 @@ const NeedVolunteerDetails = () => {
               <p className='font-normal'> {description} </p>
               <div className='flex'>
                 <p className='font-medium'>
-                  Post Category : :{" "}
+                  Post Category :{" "}
                   <span className='font-normal'>{category}</span>
                 </p>
               </div>
               <div className='flex'>
                 <p className='font-medium'>
-                  Application Deadline :
+                  Application Deadline :{" "}
                   <span className='font-normal'>
                     {new Date(deadLine).toLocaleDateString("en-GB")}
                   </span>
