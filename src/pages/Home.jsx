@@ -2,6 +2,8 @@ import { Helmet } from "react-helmet-async";
 import Slider from "../components/Slider";
 import { useLoaderData } from "react-router-dom";
 import VolunteerNeedSection from "../components/VolunteerNeedSection";
+import Message from "../components/Message";
+import Contact from "../components/Contact";
 
 
 const Home = () => {
@@ -13,7 +15,9 @@ const Home = () => {
         <title>Nexus | Home</title>
       </Helmet>
       <Slider></Slider>
-       <VolunteerNeedSection></VolunteerNeedSection>
+      <VolunteerNeedSection></VolunteerNeedSection>
+      <Message></Message>
+      <Contact></Contact>
     
     </>
   );
