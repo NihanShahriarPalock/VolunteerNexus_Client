@@ -6,9 +6,7 @@ const Contact = () => {
         <section className='bg-white dark:bg-gray-900'>
           <div className='container px-6 py-12 mx-auto'>
             <div className='text-center'>
-              <p className='font-medium text-blue-500 dark:text-blue-400'>
-                Contact us
-              </p>
+              
 
               <h1 className='mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white'>
                 Get in touch
